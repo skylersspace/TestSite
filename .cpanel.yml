@@ -1,7 +1,13 @@
 ---
 deployment:
-  tasks:
-    - export DEPLOYPATH=/home/skylerss/dev.skylersspace.com
-    - /bin/cp index.html $DEPLOYPATH
-    - /bin/cp style.css $DEPLOYPATH
-    - /bin/cp -R testing $DEPLOYPATH
+  main_site:
+    tasks:
+      - export MAIN_DEPLOYPATH=/home/skylerss/dev.skylersspace.com/alt
+      - /bin/cp - R main $MAIN_DEPLOYPATH
+
+  dev_site:
+    tasks:
+      - export DEV_DEPLOYPATH=/home/skylerss/dev.skylersspace.com
+      - /bin/cp index.html $DEV_DEPLOYPATH
+      - /bin/cp style.css $DEV_DEPLOYPATH
+      - /bin/cp -R testing $DEV_DEPLOYPATH

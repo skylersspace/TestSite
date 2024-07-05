@@ -4,3 +4,4 @@ deployment:
     - export DEPLOYPATH=/home/skylerss/dev.skylersspace.com
     - /bin/cp index.html $DEPLOYPATH
     - /bin/cp style.css $DEPLOYPATH
+    - /bin/cp -R testing $DEPLOYPATH

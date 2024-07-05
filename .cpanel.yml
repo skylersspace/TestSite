@@ -3,7 +3,7 @@ deployment:
   main_site:
     tasks:
       - export MAIN_DEPLOYPATH=/home/skylerss/dev.skylersspace.com/alt
-      - /bin/cp - R main $MAIN_DEPLOYPATH
+      - /bin/cp - R main/* $MAIN_DEPLOYPATH
 
   dev_site:
     tasks:

@@ -11,8 +11,8 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
     - name: Print Hello World with branch information
       run: |
-        echo "Hello World! You just pushed to the ${{ github.ref_name }} branch."
+        echo "Hello World! ${{ actor }} just pushed to the ${{ github.ref }} branch within the ${{ github.repository }} repository."

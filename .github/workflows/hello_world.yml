@@ -15,4 +15,4 @@ jobs:
 
     - name: Print Hello World with branch information
       run: |
-        echo "Hello World! ${{ actor }} just pushed to the ${{ github.ref }} branch within the ${{ github.repository }} repository."
+        echo "Hello World! ${{ github.actor }} just pushed to the ${{ github.ref }} branch within the ${{ github.repository }} repository."

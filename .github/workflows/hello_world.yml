@@ -1,0 +1,40 @@
+name: Hello World
+
+on:
+  push:
+    branches:
+      - '*' #This will trigger on all branches
+
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  print-hello-world:
+    runs-on: ubuntu-latest
+
+    steps:
+    #- name: Checkout code
+      #uses: actions/checkout@v3
+
+    #Prints some basic information
+    - name: Print basic information
+      run: |
+        echo "${{ github.actor }} just pushed to the ${{ github.ref }} branch within the ${{ github.repository }} repository."
+
+    #Pull request into main branch
+    - name: Pull request into main branch
+      if: github.event_name == 'pull_request' && github.ref == 'refs/heads/main'
+      run: |
+        echo: "This was triggered by a pull request into the main branch.
+    
+    #Steps for specific branches
+    - name: Run for x branches
+      if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/dev')
+      run: |
+        echo "This action is running for the main or dev branch being pushed"
+
+    - name: Run for all other branches
+      if: github.ref != 'refs/heads/main' && github.ref != 'refs/heads/dev'
+      run: |
+        echo "This action is running for a branch other than main or dev."

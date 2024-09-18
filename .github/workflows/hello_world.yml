@@ -11,8 +11,20 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v3
+      #uses: actions/checkout@v3
 
+    #Prints some basic information
     - name: Print Hello World with branch information
       run: |
         echo "Hello World! ${{ github.actor }} just pushed to the ${{ github.ref }} branch within the ${{ github.repository }} repository."
+
+    #Steps for specific branches
+    - name: Run for x branches
+      if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/dev'
+      run: |
+        echo "This action is running for the main or dev branch"
+
+    - name: Run for all other branches
+      if: github.ref != 'refs/heads/main' && github.ref != 'refs/heads/dev'
+      run: |
+        echo "This action is running for a branch other than main or dev."

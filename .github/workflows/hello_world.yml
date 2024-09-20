@@ -51,5 +51,5 @@ jobs:
       #Development Branch
       if: github.event_name == 'push' && github.ref == 'refs/heads/Development'
       run: |
-        DEPLOY_PATH= "dev.example.com"
-        echo "The development branch was pushed. Deploying to ${{ DEPLOY_PATH }}"
+        #DEPLOY_PATH= "dev.example.com"
+        echo "The development branch was pushed. Deploying to ${{ env.DEPLOY_PATH }}"

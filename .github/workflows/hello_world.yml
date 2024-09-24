@@ -28,13 +28,14 @@ jobs:
       #uses: actions/checkout@v3
 
     #Prints some basic information
-    - name: Print basic information
+    - name: Print basic 
+      env:
+        step_var: "I am a step variable"
       run: |
         echo "${{ github.actor }} just pushed to the ${{ github.ref }} branch within the ${{ github.repository }} repository."
         echo "I am going to print the global variable! $GLOBAL_VAR"
         echo "I am going to print the job variable! $JOB_VAR."
-        env:
-          step_var: "I am a step variable"
+        
         echo "I am going to print the variable! $step_var"
 
     #Pull request into main branch

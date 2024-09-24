@@ -30,10 +30,10 @@ jobs:
     #Prints some basic information
     - name: Print basic information
       run: |
-        echo "${{ github.actor }} just pushed to the ${{ github.ref }} branch within the ${{ github.repository }} repository."
-        echo "I am going to print the variables! $GLOBAL_VAR, and then $step_var, and then $JOB_VAR."
         env:
           step_var: "Wow, I can even do it here?"
+        echo "${{ github.actor }} just pushed to the ${{ github.ref }} branch within the ${{ github.repository }} repository."
+        echo "I am going to print the variables! $GLOBAL_VAR, and then $step_var, and then $JOB_VAR."
 
     #Pull request into main branch
     - name: Pull request into main branch

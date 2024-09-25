@@ -12,6 +12,7 @@ on:
   #Other triggers can include schedule or workflow_dispatch
   #Scheduled to run at set intervals (backups, routine checks, etc.)
   #Workflow Dispatches allow for manual triggering of a workflow. Can also include user input.
+  workflow_dispatch:
 
 env:
   GLOBAL_VAR: "I am a global variable"

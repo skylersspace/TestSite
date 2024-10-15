@@ -25,11 +25,8 @@ jobs:
       JOB_VAR: "I am a job variable"
 
     steps:
-    #- name: Checkout code
-      #uses: actions/checkout@v3
-
     #Prints some basic information
-    - name: Print basic 
+    - name: Log Basic Information
       env:
         step_var: "I am a step variable"
       run: |
@@ -40,14 +37,14 @@ jobs:
         echo "I am going to print the variable! $step_var"
 
     #Pull request into main branch
-    - name: Pull request into main branch
-      if: github.event_name == 'pull_request' && github.ref == 'refs/heads/main'
+    - name: Main Branch Pull Request
+      if: github.ref == 'refs/heads/main' && github.event_name == 'pull_request'
       run: |
-        echo: "This was triggered by a pull request into the main branch.
+        echo "This was triggered by a pull request into the main branch.
 
     #Developer branch pushed
     - name: Branch pushed
       #Development Branch
-      if: github.event_name == 'push' && github.ref == 'refs/heads/Development'
+      if: github.ref == 'refs/heads/Development' && github.event_name == 'push'
       run: |
         echo "The development branch was pushed. Deploying to TEMP"

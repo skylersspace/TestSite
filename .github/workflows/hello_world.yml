@@ -1,40 +1,53 @@
 name: Hello World
 
 on:
-  push:
+  push: #Commit(s) are pushed to a repository or branch
     branches:
       - '*' #This will trigger on all branches
 
-  pull_request:
+  pull_request: #Whenever a pull request is opened, updated, or merged. 
     branches:
       - main
+
+  #Other triggers can include schedule or workflow_dispatch
+  #Scheduled to run at set intervals (backups, routine checks, etc.)
+  #Workflow Dispatches allow for manual triggering of a workflow. Can also include user input.
+  workflow_dispatch:
+
+env:
+  GLOBAL_VAR: "I am a global variable"
 
 jobs:
   print-hello-world:
     runs-on: ubuntu-latest
+
+    env:
+      JOB_VAR: "I am a job variable"
 
     steps:
     #- name: Checkout code
       #uses: actions/checkout@v3
 
     #Prints some basic information
-    - name: Print basic information
+    - name: Print basic 
+      env:
+        step_var: "I am a step variable"
       run: |
         echo "${{ github.actor }} just pushed to the ${{ github.ref }} branch within the ${{ github.repository }} repository."
+        echo "I am going to print the global variable! $GLOBAL_VAR"
+        echo "I am going to print the job variable! $JOB_VAR."
+        
+        echo "I am going to print the variable! $step_var"
 
     #Pull request into main branch
     - name: Pull request into main branch
       if: github.event_name == 'pull_request' && github.ref == 'refs/heads/main'
       run: |
         echo: "This was triggered by a pull request into the main branch.
-    
-    #Steps for specific branches
-    - name: Run for x branches
-      if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/dev')
-      run: |
-        echo "This action is running for the main or dev branch being pushed"
 
-    - name: Run for all other branches
-      if: github.ref != 'refs/heads/main' && github.ref != 'refs/heads/dev'
+    #Developer branch pushed
+    - name: Branch pushed
+      #Development Branch
+      if: github.event_name == 'push' && github.ref == 'refs/heads/Development'
       run: |
-        echo "This action is running for a branch other than main or dev."
+        echo "The development branch was pushed. Deploying to TEMP"
